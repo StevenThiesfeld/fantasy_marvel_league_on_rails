@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FantasyMarvelLeagueOnRails</title>
+  <title>Fantasy Marvel League</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+      <ul class="navlinks">
+       <li> <a href="javascript:history.back()">Back</a></li>     
+       <li> <a href="/user/profile">Your Profile</a></li>
+       <li> <a href="/characters">Characters</a></li>
+       <li> <a href="/teams">Teams</a></li>
+       <li> <a href="/wishlist">Wishlist</a></li>
+       <li> <a href="/search">Search</a></li>
+       <li> <a href="/messages">Messages</a></li>
+       <li> <a href="/logout">Logout</a></li>
+       <li> <img src="<%=@current_user.image%>"><br><p><%=@current_user.name%></p></li>
+      </ul>
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+      <label for="nav-trigger"></label>
+      
+  <div class="wrapper">
+      <%= yield %>
+  </div>
 
 </body>
 </html>

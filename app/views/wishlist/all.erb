@@ -1,0 +1,18 @@
+<h1><a href="/wishlist">Your Wishlist</a><br>All Wishlists</h1>
+<% @users.each do |user|  %>
+  <div class="user_wishlist">
+    <h2><img src="<%= user.image %>" height="50" width="50"><%= user.name %></h2>
+    <% if @current_user.name != user.name  %>
+      <% if display_trade_option?(user) == true  %>
+        <h4><a href="/start_trade/<%= user.id %>">Perform Offline Trade</a></h4>
+      <% else  %>
+        <h4>No Valid Offline Trade</h4>
+      <% end  %>
+    <% end  %>
+    <p>Currently Offering: <%= user.wishlist.offer %></p>
+    <% user.wishlist.characters.each do |char| %>
+    <hr>
+      <p><%= char.name %><br>Owned By: <%= char.user.name  %></p>
+    <% end  %>
+  </div>
+<% end  %>

@@ -1,4 +1,54 @@
 FantasyMarvelLeagueOnRails::Application.routes.draw do
+  
+  post "/characters/add" do
+  post "/characters/swap_user" do
+  get "/characters" do
+  get "/characters/all" do
+  get "/characters/delete/:id" do
+
+  ["/messages/new/:id", "/messages/new"].each do |route|
+  post "/messages/send" do
+  get "/messages" do
+
+  get "/search" do
+  post "/search_results" do
+
+  get "/teams" do
+  get "/teams/all" do
+  get "/teams/details/:slug" do
+  get "/teams/new" do 
+  post "/teams/create" do
+  get "/teams/edit/:id" do 
+  get "/teams/confirm_edit" do
+  get "/teams/delete/:id" do
+  get "/teams/confirm_delete/:id" do
+  post "/teams/assign" do
+  get "/teams/unassign/:id" do
+    
+  get "/start_trade/:id" do
+  post "/confirm_trade" do
+
+  get "/login" do
+  get "/logout" do
+  post "/login/user/verification" do
+  get "/login/user/setup" do
+  post "/login/user/confirm_creation" do 
+  post "/login/user/create_profile" do
+  get "/user/profile" do
+  get "/user/edit_profile" do
+  post "/user/confirm_edit" do
+  get "/user/delete_profile" do
+  get "/user/confirm_delete" do
+
+  get "/wishlist" do
+  get "/wishlist/all" do
+  post "/wishlist/add_offer" do
+  get "/wishlist/add/:name" do
+
+  
+  
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

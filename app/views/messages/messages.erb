@@ -1,0 +1,22 @@
+<h1>Your Messages</h1>
+<form action="/messages/new">
+  <label for="id">Send To:</label>
+  <select name="id">
+  <%User.all.each do |user|  %>
+    <% if user.id != @current_user.id  %>
+      <option value="<%= user.id %>"><%= user.name %></option> 
+    <% end  %>
+  <% end %>
+  </select>
+  <input type="submit" value="New Message">
+</form>
+<hr>
+  
+
+<% if @messages == []  %>
+  <h3> No messages</h3>
+<% else %> 
+  <% @messages.each do |message|  %>
+    <%= partial(:"messages/message_display", :message => message) %>
+  <% end  %>
+<% end %>
