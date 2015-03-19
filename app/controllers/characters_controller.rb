@@ -1,30 +1,28 @@
-#------------------------------------------------------------------------------
-#CHARACTER AND SEARCH ROUTES
-#------------------------------------------------------------------------------
-post "/characters/add" do
+
+def add
   @char = Character.create(params)
-  redirect "/characters"
+  redirect_to "/characters"
 end
 
-post "/characters/swap_user" do
+def swap_user
   char = Character.find(params["id"])
   char.update({user_id: @current_user.id, team_id: 0})
-  redirect "/characters"
+  redirect_to "/characters"
 end
   
 
-get "/characters" do
+def index
   @characters = @current_user.characters
   erb :"characters/characters"
 end
 
-get "/characters/all" do
+def all
   @users = User.all
   erb :"characters/all"
 end
 
-get "/characters/delete/:id" do
+def drop
   char =  Character.find(params["id"])
   char.update({team_id: 0, user_id: 0})
-  redirect "/characters"
+  redirect_to "/characters"
 end  

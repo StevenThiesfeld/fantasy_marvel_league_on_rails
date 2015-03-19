@@ -1,8 +1,8 @@
-get "/search" do
+def new
   erb :"search/search"
 end
 
-post "/search_results" do
+def results
   client = SearchEngine.new(params)
   if client.error == ""
     @char_results = client.search_for_chars

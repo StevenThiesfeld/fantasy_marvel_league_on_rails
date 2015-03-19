@@ -2,7 +2,7 @@
 #TRADE ROUTES
 #------------------------------------------------------------------------------
 
-get "/start_trade/:id" do
+def start
   @user2 = User.find(params["id"])
   @trade = Trade.new("user1" => @current_user, "user2" => @user2)
   if @trade.valid_trade
@@ -11,7 +11,7 @@ get "/start_trade/:id" do
   end
 end
 
-post "/confirm_trade" do
+def confirm
   make_trade(params)
   erb :"trade/trade_finished"
 end

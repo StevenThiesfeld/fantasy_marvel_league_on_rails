@@ -1,20 +1,17 @@
-#------------------------------------------------------------------------------
-#MESSAGE ROUTES
-#------------------------------------------------------------------------------
-["/messages/new/:id", "/messages/new"].each do |route|
-  get route do
+
+def new
     @to_user = User.find(params["id"])
     erb :"messages/new"
   end
 end
 
-post "/messages/send" do
+def send
   params["from_user_id"] = @current_user.id
   @message = Message.create(params)
-  redirect "/messages"
+  redirect_to "/messages"
 end
 
-get "/messages" do
+def index
   @messages = Message.where("to_user_id = ? OR from_user_id = ?", @current_user.id, @current_user.id).reverse_order
   erb :"messages/messages"
 end

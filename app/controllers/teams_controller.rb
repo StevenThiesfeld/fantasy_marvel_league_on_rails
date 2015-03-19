@@ -1,30 +1,30 @@
 #------------------------------------------------------------------------------
 #TEAM ROUTES
 #------------------------------------------------------------------------------
-get "/teams" do
+def index
   @teams = @current_user.teams
     erb :"teams/teams"
 end
 
-get "/teams/all" do
+def all
   @users = User.all
   erb :"teams/all"
 end
 
-get "/teams/details/:slug" do
+def show
   @team = Team.find_by(slug: params["slug"])
   @team_chars = @team.characters
   erb :"teams/details"
 end
 
-get "/teams/new" do 
+def new
   erb :"teams/new"
 end  
 
-post "/teams/create" do
+def create
   @new_team = Team.create(params)
   if @new_team.errors == []
-    redirect "/teams"
+    redirect_to "/teams"
   else
     @error = "Please Enter a Name"
     erb :"teams/new"
@@ -32,38 +32,38 @@ post "/teams/create" do
 end
 
 
-get "/teams/edit/:id" do 
+def edit
   @team = Team.find(params["id"])
   erb :"teams/edit"
 end
 
-get "/teams/confirm_edit" do
+def update
   team = Team.find(params["id"])
   team.update(params)
   team.set_slug
   team.save
-  redirect "/teams"
+  redirect_to "/teams"
 end
 
-get "/teams/delete/:id" do
+def delete
   @team = Team.find(params["id"])
   erb :"teams/confirm_delete"
 end
 
-get "/teams/confirm_delete/:id" do
+def confirm_delete
   team = Team.find(params["id"]) 
   team.destroy
-  redirect "/teams" 
+  redirect_to "/teams" 
 end
 
-post "/teams/assign" do
+def assign
   char_to_assign = Character.find(params["char_to_assign"])
   char_to_assign.update(team_id: params["team_id"])
-  redirect "/teams"
+  redirect_to "/teams"
 end
 
-get "/teams/unassign/:id" do
+def unassign
   char_to_unassign = Character.find(params["id"])
   char_to_unassign.update(team_id: 0)
-  redirect "/teams"
+  redirect_to "/teams"
 end

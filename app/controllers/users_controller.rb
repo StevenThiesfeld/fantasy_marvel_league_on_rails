@@ -8,83 +8,79 @@ before do
     if session[:user_id]
       @current_user = User.find(session[:user_id])
     else
-      redirect "/login"
+      redirect_to "/login"
     end
   end
 end  
 
-get "/" do
-  redirect "/login"
+
+def login
+  render layout: "login"
 end
 
-get "/login" do
-  erb :"user/login", :layout => :"layout_login"
-end
-
-get "/logout" do
+def logout
   session[:user_id] = nil
-  redirect "/"
+  redirect_to "/login"
 end
 
-post "/login/user/verification" do
+def verification
   if user = User.find_by(name: params["name"])
     binding.pry
     if BCrypt::Password.new(user.password) == params["password"]
       session[:user_id] = user.id
-      redirect "/user/profile"
+      redirect_to "/user/profile"
     else
       @error = "invalid Password"
-      erb :"user/login", :layout => :"layout_login"
+      render "login", layout: "login"
     end
   else
     @error = "Invalid User Name"
-    erb :"user/login", :layout => :"layout_login"
+    render "login", layout: "login"
   end
 end
 
-get "/login/user/setup" do
-  
-  erb :"user/setup", :layout => :"layout_login" 
+def setup
+  render layout: "login" 
 end
 
-post "/login/user/confirm_creation" do #error check goes here
+def confirm_creation
   @new_user = User.new(params)
    @errors = @new_user.errors.messages
   if @errors == {}
-    erb :"user/confirm_creation", :layout => :"layout_login"
+    render layout: "login"
   else
-    erb :"user/setup", :layout => :"layout_login" 
+    render "setup", layout: "login" 
   end
 end
 
-post "/login/user/create_profile" do
+def create
   params["password"] = BCrypt::Password.create(params["password"])
   @current_user = User.create(params)
   @current_user.user_setup
   session[:user_id] = @current_user.id
-  redirect "/user/profile"
+  redirect_to "/user/profile"
 end
 
-get "/user/profile" do
+def profile
   @unviewed_messages = Message.where(to_user_id: @current_user.id, viewed: "no").reverse_order
   erb :"user/profile"
 end
 
-get "/user/edit_profile" do
+def edit
   erb :"user/edit_profile"
 end
 
-post "/user/confirm_edit" do
+def update
   params[:password] = BCrypt::Password.create(params["password"])
   @current_user.update(params)
-  redirect "/user/profile"
+  redirect_to "/user/profile"
 end
 
-get "/user/delete_profile" do
+def delete
   erb :"user/delete_profile"
 end
 
-get "/user/confirm_delete" do
+def destroy
   @current_user.delete_user
-  redirect "/logout"
+  redirect_to "/logout"
 end

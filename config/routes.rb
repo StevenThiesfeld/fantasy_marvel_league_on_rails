@@ -1,49 +1,50 @@
-FantasyMarvelLeagueOnRails::Application.routes.draw do
-  
-  post "/characters/add" do
-  post "/characters/swap_user" do
-  get "/characters" do
-  get "/characters/all" do
-  get "/characters/delete/:id" do
+FantasyMarvelLeagueOnRails::Application.routes.draw =>
+  root :to => 'users#profile'
+  post "/characters/add" => 'characters#add'
+  post "/characters/swap_user" => 'characters#swap_user'
+  get "/characters" => 'characters#index'
+  get "/characters/all" => 'characters#all'
+  get "/characters/delete/:id" => 'characters#drop'
 
-  ["/messages/new/:id", "/messages/new"].each do |route|
-  post "/messages/send" do
-  get "/messages" do
+  get "/messages/new/:id" => 'messages#new'
+  post "/messages/new" => 'messages#new'
+  post "/messages/send" => 'messages#send'
+  get "/messages" => 'messages#index'
 
-  get "/search" do
-  post "/search_results" do
+  get "/search" => 'search#new'
+  post "/search_results" => 'search#results'
 
-  get "/teams" do
-  get "/teams/all" do
-  get "/teams/details/:slug" do
-  get "/teams/new" do 
-  post "/teams/create" do
-  get "/teams/edit/:id" do 
-  get "/teams/confirm_edit" do
-  get "/teams/delete/:id" do
-  get "/teams/confirm_delete/:id" do
-  post "/teams/assign" do
-  get "/teams/unassign/:id" do
+  get "/teams" => 'teams#index'
+  get "/teams/all" => 'teams#all'
+  get "/teams/details/:slug" => 'teams#show'
+  get "/teams/new" =>  'teams#new'
+  post "/teams/create" => 'teams#create'
+  get "/teams/edit/:id" => 'teams#edit'
+  get "/teams/confirm_edit" => 'teams#update'
+  get "/teams/delete/:id" => 'teams#delete'
+  get "/teams/confirm_delete/:id" => 'teams#confirm_delete'
+  post "/teams/assign" => 'teams#assign'
+  get "/teams/unassign/:id" => 'teams#unassign'
     
-  get "/start_trade/:id" do
-  post "/confirm_trade" do
+  get "/start_trade/:id" => 'trades#start'
+  post "/confirm_trade" => 'trades#confirm'
 
-  get "/login" do
-  get "/logout" do
-  post "/login/user/verification" do
-  get "/login/user/setup" do
-  post "/login/user/confirm_creation" do 
-  post "/login/user/create_profile" do
-  get "/user/profile" do
-  get "/user/edit_profile" do
-  post "/user/confirm_edit" do
-  get "/user/delete_profile" do
-  get "/user/confirm_delete" do
+  get "/login" => 'users#login'
+  get "/logout" => 'users#logout'
+  post "/login/user/verification" => 'users#verification'
+  get "/login/user/setup" => 'users#setup'
+  post "/login/user/confirm_creation" => 'users#confirm_creation'
+  post "/login/user/create_profile" => 'users#create'
+  get "/user/profile" => 'users#profile'
+  get "/user/edit_profile" => 'users#edit'
+  post "/user/confirm_edit" => 'users#update'
+  get "/user/delete_profile" => 'users#delete'
+  get "/user/confirm_delete" => 'users#destroy'
 
-  get "/wishlist" do
-  get "/wishlist/all" do
-  post "/wishlist/add_offer" do
-  get "/wishlist/add/:name" do
+  get "/wishlist" => 'wishlists#show'
+  get "/wishlist/all" => 'wishlists#all'
+  post "/wishlist/add_offer" => 'wishlists#add_offer'
+  get "/wishlist/add/:name" => 'wishlists#add_character'
 
   
   
@@ -64,33 +65,33 @@ FantasyMarvelLeagueOnRails::Application.routes.draw do
   #   resources :products
 
   # Sample resource route with options:
-  #   resources :products do
-  #     member do
+  #   resources :products =>
+  #     member =>
   #       get 'short'
   #       post 'toggle'
   #     end
   #
-  #     collection do
+  #     collection =>
   #       get 'sold'
   #     end
   #   end
 
   # Sample resource route with sub-resources:
-  #   resources :products do
+  #   resources :products =>
   #     resources :comments, :sales
   #     resource :seller
   #   end
 
   # Sample resource route with more complex sub-resources
-  #   resources :products do
+  #   resources :products =>
   #     resources :comments
-  #     resources :sales do
+  #     resources :sales =>
   #       get 'recent', :on => :collection
   #     end
   #   end
 
   # Sample resource route within a namespace:
-  #   namespace :admin do
+  #   namespace :admin =>
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
