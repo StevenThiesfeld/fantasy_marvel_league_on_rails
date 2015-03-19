@@ -28,11 +28,12 @@ class UsersController < ApplicationController
   end
 
   def setup
+    @user = User.new
     render layout: "login" 
   end
 
   def confirm_creation
-    @new_user = User.new(params)
+    @new_user = User.new(params["user"])
      @errors = @new_user.errors.messages
     if @errors == {}
       render layout: "login"
@@ -42,8 +43,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    params["password"] = BCrypt::Password.create(params["password"])
-    @current_user = User.create(params)
+    params["user"]["password"] = BCrypt::Password.create(params["user"]["password"])
+    @current_user = User.create(params["user"])
     @current_user.user_setup
     session[:user_id] = @current_user.id
     redirect_to "/user/profile"

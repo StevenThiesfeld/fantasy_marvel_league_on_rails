@@ -1,0 +1,21 @@
+<h1>Edit Profile</h1>
+
+<%= form_for @current_user do |f| %>
+<%= f.label :name, "Edit Name" %>
+<%= f.text_field :name %><br>
+<%= f.label :password, "Enter New Password" %>
+<%= f.text_field :password %><br>
+<%= f.label :image, "Image URL" %>
+<%= f.text_field :image %>
+<%= f.submit %>
+<% end  %>
+
+<form action="/user/confirm_edit" method="post">
+  Enter New User Name
+  <input type="text" name="name" value="<%= @current_user.name %>">
+  Enter New Password
+  <input type="text" name="password">
+  Paste new Image URL
+  <input type="text" name="image" value="<%= @current_user.image %>">
+  <input type="submit" value="Submit">
+</form>

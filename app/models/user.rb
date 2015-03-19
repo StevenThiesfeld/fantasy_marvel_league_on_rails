@@ -14,8 +14,7 @@
 # #get_wishlist
 
 class User < ActiveRecord::Base
-  # include DatabaseMethods
-#   extend ClassMethods
+  attr_accessible :name, :password, :image
   include ModelHelper
   include BCrypt
   after_initialize :defaults
@@ -60,7 +59,6 @@ class User < ActiveRecord::Base
 #  #  State Changes: Inserts a new team and new wishlist to the database.
 #
   def user_setup
-    binding.pry
     wishlist = Wishlist.create(name: "Your Wishlist", user_id: id)
     team = Team.create(name: "Your Team", user_id: id)
     self

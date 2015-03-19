@@ -1,0 +1,27 @@
+<h1> User Setup</h1>
+<div class="usersetup">
+  
+  <%= form_for @user, url: "/login/user/confirm_creation" do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :password %>
+  <%= f.text_field :password %><br>
+  <%= f.label :image%>
+  <%= f.text_field :image %><br>
+  <%= f.submit %>
+  <% end  %>
+  
+<form action="/login/user/confirm_creation" method="post">
+  <p class=error><%= @errors[:name] unless @errors.nil?  %>
+  <%= @errors[:taken] unless @errors.nil? %></p>
+  <label for="name">Enter User Name*</label>
+  <input type="text" name="name" value="<%= params["name"] %>"><br>
+  <p class=error><%= @errors[:password] unless @errors.nil? %></p>
+  <label for="password">Enter Password*</label>
+  <input type="text" name="password" value="<%= params["password"] %>"><br>
+  Paste Avatar Picture URL
+  <input type="text" name="image" value="<%= params["image"] %>"><br>
+  <input type="submit" value="Submit">
+</form>
+</div>
+  

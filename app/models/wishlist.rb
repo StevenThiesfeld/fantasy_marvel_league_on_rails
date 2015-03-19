@@ -16,6 +16,7 @@
 # #delete_wishlist
 
 class Wishlist < ActiveRecord::Base
+  attr_accessible :name, :user_id, :offer
   # include DatabaseMethods
 #   extend ClassMethods
   include ModelHelper

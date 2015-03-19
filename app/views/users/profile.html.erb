@@ -1,0 +1,16 @@
+<div class="userinfo">
+<h1><%= @current_user.name %></h1>
+<h3> <a href="/user/edit_profile">Edit Profile</a>--<a href="/user/delete_profile">Delete Profile</a>
+ </h3>
+<img src="<%= @current_user.image %>" height="300" width="300">
+</div>
+
+
+<% if @unviewed_messages == []  %>
+  <h3> No new messages</h3>
+<% else %> 
+  <% @unviewed_messages.each do |message|  %>
+    <%= partial(:"messages/message_display", :message => message) %>
+    <% message.mark_as_viewed  %>
+  <% end  %>
+<% end %>
