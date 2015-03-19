@@ -11,7 +11,7 @@ class TradesController < ApplicationController
   end
 
   def confirm
-    make_trade(params)
+    make_trade(params[:trade])
   end
   
 end

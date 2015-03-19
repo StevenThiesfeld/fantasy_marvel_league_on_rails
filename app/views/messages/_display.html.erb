@@ -6,6 +6,15 @@
   <a href="/messages/new/<%= message.from_user_id %>">Reply</a>
   <% if message.trade == "yes" %>
     <p> Offered <%= message.get_offered_char_name %> for <%= message.get_requested_char_name %></p>
+    
+    <%= form_for(message, as: :trade, action: "/confirm_trade") do |f| %>
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :from_user_id %>
+    <%= f.hidden_field :offered_char %>
+    <%= f.hidden_field :requested_char %>
+    <%= f.submit "Accept Trade" %>
+    <% end  %>
+    
   <form action="/confirm_trade" method="post">
     <input type="hidden" name="message_id" value="<%= message.id %>">
     <input type="hidden" name="user2_id" value="<%= message.from_user_id %>">
