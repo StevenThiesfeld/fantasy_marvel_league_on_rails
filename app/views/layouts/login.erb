@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
-    <title>!F_M_L!</title>
-    <link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" title="no title" charset="utf-8">
-    
-    
- <link rel="stylesheet" href="/css/new-styles.css" type="text/css" media="screen" title="no title" charset="utf-8">
-  
-  </head>
+   
+    <head>
+      <title>Fantasy Marvel League</title>
+      <%= stylesheet_link_tag    "application", :media => "all" %>
+      <%= javascript_include_tag "application" %>
+      <%= csrf_meta_tags %>
+    </head>
   
   <body>
     <%= yield %>

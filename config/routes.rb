@@ -1,4 +1,4 @@
-FantasyMarvelLeagueOnRails::Application.routes.draw =>
+FantasyMarvelLeagueOnRails::Application.routes.draw do
   root :to => 'users#profile'
   post "/characters/add" => 'characters#add'
   post "/characters/swap_user" => 'characters#swap_user'

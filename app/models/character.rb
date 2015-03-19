@@ -14,6 +14,7 @@
 # #find_owner
 
 class Character < ActiveRecord::Base
+  attr_accessible :name, :description, :user_id, :team_id, :image, :popularity
   include ModelHelper
   
   after_initialize :defaults

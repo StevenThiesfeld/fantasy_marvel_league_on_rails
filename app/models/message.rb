@@ -21,6 +21,7 @@
 # #get_requested_char_name
 
 class Message < ActiveRecord::Base
+  attr_accessible :body, :from_user_id, :to_user_id, :viewed, :trade, :offered_char, :requested_char
     include ModelHelper
   
   after_initialize :defaults

@@ -12,6 +12,7 @@
 # #delete
 
 class Team < ActiveRecord::Base
+  attr_accessible :name, :user_id
   include ModelHelper
     
   after_initialize :defaults
