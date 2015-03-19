@@ -1,5 +1,5 @@
 FantasyMarvelLeagueOnRails::Application.routes.draw do
-  root :to => 'users#profile'
+  root :to => 'users#show'
   post "/characters/add" => 'characters#add'
   post "/characters/swap_user" => 'characters#swap_user'
   get "/characters" => 'characters#index'
@@ -11,7 +11,7 @@ FantasyMarvelLeagueOnRails::Application.routes.draw do
   post "/messages/send" => 'messages#send'
   get "/messages" => 'messages#index'
 
-  get "/search" => 'search#new'
+  get "/search" => 'search#search'
   post "/search_results" => 'search#results'
 
   get "/teams" => 'teams#index'
@@ -35,9 +35,9 @@ FantasyMarvelLeagueOnRails::Application.routes.draw do
   get "/login/user/setup" => 'users#setup'
   post "/login/user/confirm_creation" => 'users#confirm_creation'
   post "/login/user/create_profile" => 'users#create'
-  get "/user/profile" => 'users#profile'
-  get "/user/edit_profile" => 'users#edit'
-  post "/user/confirm_edit" => 'users#update'
+  get "/profile", to: 'users#show'
+  get "profile/edit", to: 'users#edit'
+  put "", to: 'users#update'
   get "/user/delete_profile" => 'users#delete'
   get "/user/confirm_delete" => 'users#destroy'
 
@@ -46,7 +46,6 @@ FantasyMarvelLeagueOnRails::Application.routes.draw do
   post "/wishlist/add_offer" => 'wishlists#add_offer'
   get "/wishlist/add/:name" => 'wishlists#add_character'
 
-  
   
   
   

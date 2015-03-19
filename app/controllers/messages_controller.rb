@@ -2,7 +2,6 @@ class MessagesController < ApplicationController
   
   def new
       @to_user = User.find(params["id"])
-      erb :"messages/new"
     end
   end
 
@@ -14,7 +13,6 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.where("to_user_id = ? OR from_user_id = ?", @current_user.id, @current_user.id).reverse_order
-    erb :"messages/messages"
   end
   
 end

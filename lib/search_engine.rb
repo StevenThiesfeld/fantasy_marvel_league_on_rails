@@ -18,7 +18,7 @@ class SearchEngine
                 '8145779d67b193e6d3a7da2b7d1df809804b7ca8')
             
     @user_search = options["user_search"]
-    @user_id = options["user_id"]
+    @user_id = options[:user_id]
     user_search != "" ? @error = "" : @error = "Please Enter a Search"
   end
   

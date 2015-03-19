@@ -15,5 +15,5 @@
 <br>
 
 <% @chars_on_wishlist.each do |char| %>
-<%= partial(:"wishlist/wishlist_display", :char => char) %>
+<%= render "/characters/display" %>
 <% end %>

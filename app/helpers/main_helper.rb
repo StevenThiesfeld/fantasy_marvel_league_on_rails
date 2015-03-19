@@ -59,7 +59,7 @@ module MainHelper
  #  State Changes: none
 
   def char_taken?(char)
-    check_char = Character.find_by(name: char.name)
+    check_char = Character.find_by_name(char.name)
     if check_char == nil 
       "no_entry"
     else

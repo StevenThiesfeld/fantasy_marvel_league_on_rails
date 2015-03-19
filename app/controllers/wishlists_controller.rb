@@ -4,17 +4,15 @@ class WishlistsController < ApplicationController
     @your_chars = @current_user.characters
     @wishlist = @current_user.wishlist
     @chars_on_wishlist = @wishlist.characters
-    erb :"wishlist/wishlist"
   end
 
   def all
     @users = User.all
-    erb :"wishlist/all"
   end
 
   def add_offer
     @wishlist = @current_user.wishlist
-    @wishlist.update(offer: params["offer"])
+    @wishlist.update_attributes(offer: params["offer"])
     redirect_to "/wishlist"
   end
 

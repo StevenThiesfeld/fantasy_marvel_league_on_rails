@@ -1,17 +1,16 @@
 class SearchController < ApplicationController
-
-  def new
-    erb :"search/search"
+  require_dependency 'search_engine'
+  def search
   end
 
   def results
-    client = SearchEngine.new(params)
+    client = SearchEngine.new(params[:search])
     if client.error == ""
       @char_results = client.search_for_chars
-      erb :"search/search_results"
+      render "results"
     else
       @error = client.error
-      erb :"search/search"
+      render "search"
     end
   end
   

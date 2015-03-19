@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  skip_before_filter :require_login, only: [:login, :verification, :setup, :confirm_creation, :create]
+  skip_before_filter :require_login, only: [:login, :logout, :verification, :setup, :confirm_creation, :create]
 
 
   def login
@@ -13,10 +13,10 @@ class UsersController < ApplicationController
   end
 
   def verification
-    if user = User.find_by(name: params["name"])
+    if user = User.find_by_name(params["name"])
       if BCrypt::Password.new(user.password) == params["password"]
         session[:user_id] = user.id
-        redirect_to "/user/profile"
+        redirect_to "/profile"
       else
         @error = "invalid Password"
         render "login", layout: "login"
@@ -47,10 +47,10 @@ class UsersController < ApplicationController
     @current_user = User.create(params["user"])
     @current_user.user_setup
     session[:user_id] = @current_user.id
-    redirect_to "/user/profile"
+    redirect_to "/profile"
   end
 
-  def profile
+  def show
     @unviewed_messages = Message.where(to_user_id: @current_user.id, viewed: "no").reverse_order
   end
 
@@ -58,9 +58,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    params[:password] = BCrypt::Password.create(params["password"])
-    @current_user.update(params)
-    redirect_to "/user/profile"
+    binding.pry
+    if params[:user][:password] != ""
+      params[:user][:password] = BCrypt::Password.create(params[:user][:password])
+    else
+      params[:user][:password] = @current_user.password
+    end
+    @current_user.update_attributes(params[:user])
+    redirect_to "/profile"
   end
 
   def delete

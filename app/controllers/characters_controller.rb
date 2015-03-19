@@ -1,7 +1,7 @@
 class CharactersController < ApplicationController
   
   def add
-    @char = Character.create(params)
+    @char = Character.create(params[:character])
     redirect_to "/characters"
   end
 
@@ -14,12 +14,10 @@ class CharactersController < ApplicationController
 
   def index
     @characters = @current_user.characters
-    erb :"characters/characters"
   end
 
   def all
     @users = User.all
-    erb :"characters/all"
   end
 
   def drop

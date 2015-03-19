@@ -2,22 +2,18 @@ class TeamsController < ApplicationController
   
   def index
     @teams = @current_user.teams
-      erb :"teams/teams"
   end
 
   def all
     @users = User.all
-    erb :"teams/all"
   end
 
   def show
     @team = Team.find_by(slug: params["slug"])
     @team_chars = @team.characters
-    erb :"teams/details"
   end
 
   def new
-    erb :"teams/new"
   end  
 
   def create
@@ -26,14 +22,13 @@ class TeamsController < ApplicationController
       redirect_to "/teams"
     else
       @error = "Please Enter a Name"
-      erb :"teams/new"
+      render "new"
     end
   end
 
 
   def edit
     @team = Team.find(params["id"])
-    erb :"teams/edit"
   end
 
   def update
@@ -46,7 +41,6 @@ class TeamsController < ApplicationController
 
   def delete
     @team = Team.find(params["id"])
-    erb :"teams/confirm_delete"
   end
 
   def confirm_delete

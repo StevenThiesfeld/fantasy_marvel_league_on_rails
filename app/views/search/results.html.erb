@@ -11,6 +11,16 @@
   <p><%= result.description %></p>
   <p>Number of Comics: <%= result.popularity %></p>
   <% if char_taken?(result) == "no_entry"  %>
+  <%= form_for result, url: "characters/add" do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :description %>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :image %>
+  <%= f.hidden_field :popularity %>
+  <%= f.hidden_field :team_id %>
+  <%= f.submit "Click here to add Character to your roster!" %>
+  <% end  %>
+  
     <form action="/characters/add" method="post">
       Click here to add Character to your roster!
       <input type="hidden" name="name" value="<%= result.name %>">
