@@ -83,7 +83,7 @@ module MainHelper
  #  State Changes: none
   
   def fetch_id(char_name)
-    char = Character.find_by(name: char_name)
+    char = Character.find_by_name(char_name)
     char.id
   end
   
@@ -103,11 +103,11 @@ module MainHelper
   def make_trade(params)
     char1 = Character.find(params["char1_id"])
     char2 = Character.find(params["char2_id"])
-    char1.update("team_id" => 0, "user_id" => params["user2_id"])
-    char2.update("team_id" => 0, "user_id" => @current_user.id)
+    char1.update_attributes("team_id" => 0, "user_id" => params["user2_id"])
+    char2.update_attributes("team_id" => 0, "user_id" => @current_user.id)
     if params["message_id"] != nil
       message = Message.find(params["message_id"])
-      message.update(trade: "finished")
+      message.update_attributes(trade: "finished")
     end
   end
   

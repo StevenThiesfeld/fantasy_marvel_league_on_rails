@@ -3,5 +3,5 @@
 <h4><a href="/teams/new">Create New Team</a></h4>
   
 <%@teams.each do |team|  %>
-<%= partial(:"teams/team_display", :team => team) %>
+<%= render partial: "display", locals: {team:  team} %>
 <% end %>

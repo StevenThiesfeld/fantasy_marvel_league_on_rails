@@ -63,7 +63,7 @@ class Team < ActiveRecord::Base
   
   def delete
     self.characters.each do |char|
-      char.update(team_id: 0)
+      char.update_attributes(team_id: 0)
     end
     self.destroy
     self

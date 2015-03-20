@@ -1,21 +1,21 @@
 <h1>New Message to <%= @to_user.name %></h1>
 <form id="message" action="/messages/send" method="post">
-  <input type="hidden" name="to_user_id" value="<%= @to_user.id %>">
+  <input type="hidden" name="message[to_user_id]" value="<%= @to_user.id %>">
   <textarea name="body" placeholder="Type message here..." rows="4" cols="60"></textarea>
 <% if @to_user.characters != [] %>
   Send a Trade Request?<br>
-    <input type="radio" form="message" name="trade" value="yes">Yes<br>
-    <input type="radio" form="message" name="trade" checked="checked"
+    <input type="radio" form="message" name="message[trade]" value="yes">Yes<br>
+    <input type="radio" form="message" name="message[trade]" checked="checked"
     value="no">No<br>
     Offering:
-    <select form="message" name="offered_char">
+    <select form="message" name="message[offered_char]">
       <% @current_user.characters.each do |char|  %>
       <option value="<%= char.id %>"><%= char.name %></option>
       <% end %>
       </select>
       <br>
     For:
-    <select form="message" name="requested_char">
+    <select form="message" name="message[requested_char]">
       <% @to_user.characters.each do |char|  %>
       <option value="<%= char.id %>"><%= char.name %></option>
     <% end %>

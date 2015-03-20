@@ -46,7 +46,7 @@ class Wishlist < ActiveRecord::Base
   end
   
   def remove_from_wishlist(char_id)
-    CharactersWishlist.find_by(character_id: char_id).destroy
+    CharactersWishlist.find_by_character_id(char_id).destroy
   end
   
   # Public Method: #get_char_ids
@@ -98,13 +98,13 @@ class Wishlist < ActiveRecord::Base
  #  @offer is set to "" if the user no longer has that character
   
   def check_offer
-    offered_char = Character.find_by(name: offer)
+    offered_char = Character.find_by_name(offer)
     if offered_char != nil
       if offered_char.user_id != user_id
-        self.update(offer: "none")
+        self.update_attributes(offer: "none")
       end
     else 
-      self.update(offer: "none")
+      self.update_attributes(offer: "none")
     end 
   end
   

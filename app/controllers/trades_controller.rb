@@ -11,7 +11,7 @@ class TradesController < ApplicationController
   end
 
   def confirm
-    make_trade(params[:trade])
+    view_context.make_trade(params[:trade])
   end
   
 end

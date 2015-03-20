@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @team = Team.find_by(slug: params["slug"])
+    @team = Team.find_by_slug(params["slug"])
     @team_chars = @team.characters
   end
 
@@ -33,7 +33,7 @@ class TeamsController < ApplicationController
 
   def update
     team = Team.find(params["id"])
-    team.update(params)
+    team.update_attributes(name: params["name"])
     team.set_slug
     team.save
     redirect_to "/teams"
@@ -51,13 +51,13 @@ class TeamsController < ApplicationController
 
   def assign
     char_to_assign = Character.find(params["char_to_assign"])
-    char_to_assign.update(team_id: params["team_id"])
+    char_to_assign.update_attributes(team_id: params["team_id"])
     redirect_to "/teams"
   end
 
   def unassign
     char_to_unassign = Character.find(params["id"])
-    char_to_unassign.update(team_id: 0)
+    char_to_unassign.update_attributes(team_id: 0)
     redirect_to "/teams"
   end
 

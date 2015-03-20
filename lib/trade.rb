@@ -42,7 +42,7 @@ class Trade
 
   def set_user2_char
     char_name = user2_wishlist.offer
-    @user2_char = Character.find_by(name: char_name)
+    @user2_char = Character.find_by_name(char_name)
   end
   
   # Private Method: set_valid_trade

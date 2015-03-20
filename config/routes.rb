@@ -8,7 +8,7 @@ FantasyMarvelLeagueOnRails::Application.routes.draw do
 
   get "/messages/new/:id" => 'messages#new'
   post "/messages/new" => 'messages#new'
-  post "/messages/send" => 'messages#send'
+  post "/messages/send" => 'messages#send_message'
   get "/messages" => 'messages#index'
 
   get "/search" => 'search#search'

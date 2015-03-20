@@ -58,7 +58,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
     if params[:user][:password] != ""
       params[:user][:password] = BCrypt::Password.create(params[:user][:password])
     else

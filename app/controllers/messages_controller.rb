@@ -2,12 +2,11 @@ class MessagesController < ApplicationController
   
   def new
       @to_user = User.find(params["id"])
-    end
   end
 
-  def send
-    params["from_user_id"] = @current_user.id
-    @message = Message.create(params)
+  def send_message
+    params[:message]["from_user_id"] = @current_user.id
+    @message = Message.create(params[:message])
     redirect_to "/messages"
   end
 

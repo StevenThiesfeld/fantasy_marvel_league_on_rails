@@ -15,5 +15,5 @@
 <br>
 
 <% @chars_on_wishlist.each do |char| %>
-<%= render "/characters/display" %>
+<%= render partial: "/characters/display", locals: {char: char} %>
 <% end %>

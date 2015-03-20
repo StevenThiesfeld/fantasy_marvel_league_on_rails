@@ -18,7 +18,7 @@ class WishlistsController < ApplicationController
 
   def add_character
     wishlist = @current_user.wishlist
-    char = Character.find_by(name: params["name"])
+    char = Character.find_by_name(params["name"])
     CharactersWishlist.create(character_id: char.id, wishlist_id: wishlist.id)
     redirect_to "/wishlist"
   end

@@ -1,5 +1,5 @@
 <h1><%= @team.name %></h1>
 
 <% @team_chars.each do |char| %>
-<%= partial(:"characters/char_display", :char => char) %>
+<%= render partial: "characters/display", locals: {char: char} %>
 <% end %>

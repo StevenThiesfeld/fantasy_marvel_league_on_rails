@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
     self.wishlist.destroy
     Team.where(user_id: id).destroy_all
     self.characters.each do |char|
-      char.update(team_id: 0, user_id: 0)
+      char.update_attributes(team_id: 0, user_id: 0)
     end
     self.destroy
     self

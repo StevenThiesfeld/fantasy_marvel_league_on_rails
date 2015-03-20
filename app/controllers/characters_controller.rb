@@ -7,7 +7,7 @@ class CharactersController < ApplicationController
 
   def swap_user
     char = Character.find(params["id"])
-    char.update({user_id: @current_user.id, team_id: 0})
+    char.update_attributes({user_id: @current_user.id, team_id: 0})
     redirect_to "/characters"
   end
   
@@ -22,7 +22,7 @@ class CharactersController < ApplicationController
 
   def drop
     char =  Character.find(params["id"])
-    char.update({team_id: 0, user_id: 0})
+    char.update_attributes({team_id: 0, user_id: 0})
     redirect_to "/characters"
   end  
   

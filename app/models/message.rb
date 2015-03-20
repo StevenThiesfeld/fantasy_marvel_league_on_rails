@@ -43,7 +43,7 @@ class Message < ActiveRecord::Base
 #   State Changes: none
   
   def self.unviewed_messages(user_id)
-    self.find_by(viewed: "no", to_user_id: user_id)
+    self.where(viewed: "no", to_user_id: user_id)
   end
   
   # Class Method: .get_all_messages
@@ -72,7 +72,7 @@ class Message < ActiveRecord::Base
  #  State Changes: none
   
   def get_from_user_name
-    result = User.find_by(id: from_user_id)
+    result = User.find_by_id(from_user_id)
     result ? name = result.name : name = "deleted user"
     name
   end
@@ -88,7 +88,7 @@ class Message < ActiveRecord::Base
  #  State Changes: none
   
   def get_to_user_name
-    result = User.find_by(id: to_user_id)
+    result = User.find_by_id(to_user_id)
     result ? name = result.name : name = "deleted user"
     name
   end
@@ -104,7 +104,7 @@ class Message < ActiveRecord::Base
  #  @viewed set to "yes" and column is updated in the messages table
  
   def mark_as_viewed
-    self.update(viewed: "yes")
+    self.update_attributes(viewed: "yes")
   end
   
   # Public Method: #get_offered_char_name
