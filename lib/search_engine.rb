@@ -14,8 +14,7 @@ class SearchEngine
 
   def initialize(options)
     @client = Marvelite::API::Client.new( :public_key =>  
-                '4de5aeb0ed9b963eea1608e13c1eff02', :private_key => 
-                '8145779d67b193e6d3a7da2b7d1df809804b7ca8')
+                ENV["PUBLIC_KEY"], :private_key => ENV["PRIVATE_KEY"])
             
     @user_search = options["user_search"]
     @user_id = options[:user_id]
